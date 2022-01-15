@@ -33,5 +33,9 @@
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.3.1"
   },
-  "types": "src/index.d.ts"
+  "types": "src/index.d.ts",
+  "dependencies": {
+    "@types/three": "^0.136.1",
+    "three": "^0.136.0"
+  }
 }
