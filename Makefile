@@ -12,5 +12,5 @@ build: clean
 	&& cp ./src/main.css ./dist \
 	&& cp -r ./src/images ./dist \
 
-deploy
+deploy:
 	git subtree push --prefix="dist"  origin gh-pages
