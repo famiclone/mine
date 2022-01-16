@@ -4,12 +4,15 @@ import {
   MeshBasicMaterial,
   MeshStandardMaterial,
   SphereBufferGeometry,
+  TextureLoader,
 } from 'three';
 
 export default function createCube() {
+  const loader = new TextureLoader();
   const geometry = new BoxBufferGeometry(3, 3, 3);
   const material = new MeshStandardMaterial({
-    color: 'purple',
+    color: 'green',
+    map: loader.load('images/dirt.jpg'),
   });
   const cube = new Mesh(geometry, material);
 

@@ -1,5 +1,6 @@
 import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
 import createCamera from './modules/camera';
+import Controller from './modules/controller';
 import createCube from './modules/cube';
 import createLight from './modules/light';
 import createRenderer from './modules/renderer';
@@ -10,11 +11,13 @@ export default class World {
   camera: PerspectiveCamera;
   scene: Scene;
   renderer: WebGLRenderer;
+  controller: Controller;
 
   constructor(private container: Element) {
     this.camera = createCamera();
     this.scene = createScene();
     this.renderer = createRenderer();
+    this.controller = new Controller(this.camera);
     container.append(this.renderer.domElement);
 
     const cube = createCube();
@@ -26,6 +29,7 @@ export default class World {
   }
 
   render() {
+    requestAnimationFrame(() => this.render());
     this.renderer.render(this.scene, this.camera);
   }
 }

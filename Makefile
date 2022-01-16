@@ -8,9 +8,11 @@ clean:
 	rm -rf dist
 
 build: clean
-	tsc && cp ./src/index.html ./dist  \
+	mkdir dist \
+	&& cp ./src/index.html ./dist  \
 	&& cp ./src/main.css ./dist \
 	&& cp -r ./src/images ./dist \
+	&& npm run build
 
 deploy:
 	git subtree push --prefix="dist"  origin gh-pages
