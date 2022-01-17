@@ -1,8 +1,7 @@
-import { PerspectiveCamera } from 'three';
+import Player from './player';
 
 export default class Controller {
-  speed: number;
-  constructor(private camera: PerspectiveCamera) {
+  constructor(private player: Player) {
     window.addEventListener('keydown', (e: KeyboardEvent) =>
       this.handleKeyDown(e.code),
     );
@@ -11,27 +10,58 @@ export default class Controller {
       this.handleKeyUp(e.code),
     );
 
-    this.speed = 1;
+    console.log(this.player);
   }
 
   handleKeyDown(code: string): void {
-    const { x, y, z } = this.camera.position;
-
     switch (code) {
       case 'KeyW':
-        this.camera.position.set(x, y + this.speed, z);
+        this.player.vel.z = -1;
         break;
-
       case 'KeyA':
-        this.camera.position.set(x - this.speed, y, z);
+        this.player.vel.x = -1;
         break;
       case 'KeyS':
-        this.camera.position.set(x, y - this.speed, z);
+        this.player.vel.z = 1;
         break;
       case 'KeyD':
-        this.camera.position.set(x + this.speed, y, z);
+        this.player.vel.x = 1;
+        break;
+      case 'KeyQ':
+        this.player.vel.y = -1;
+        break;
+      case 'KeyE':
+        this.player.vel.y = 1;
+        break;
+      case 'Space':
+        this.player.vel.y = 1;
         break;
     }
   }
-  handleKeyUp(code: string): void {}
+  handleKeyUp(code: string): void {
+    switch (code) {
+      case 'KeyW':
+        this.player.vel.z = 0;
+        break;
+
+      case 'KeyA':
+        this.player.vel.x = 0;
+        break;
+      case 'KeyS':
+        this.player.vel.z = 0;
+        break;
+      case 'KeyD':
+        this.player.vel.x = 0;
+        break;
+      case 'Space':
+        this.player.vel.y = 0;
+        break;
+      case 'KeyQ':
+        this.player.vel.y = 0;
+        break;
+      case 'KeyE':
+        this.player.vel.y = 0;
+        break;
+    }
+  }
 }
